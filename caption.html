@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Instagram Caption Generator</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body{
+font-family:Arial;
+background:#fafafa;
+text-align:center;
+padding:20px;
+}
+
+.container{
+background:white;
+padding:20px;
+border-radius:12px;
+max-width:500px;
+margin:auto;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+/* POST */
+.post{
+background:white;
+border:1px solid #ddd;
+border-radius:10px;
+margin-top:20px;
+padding:10px;
+text-align:left;
+}
+
+/* IMAGE */
+.post img{
+width:100%;
+max-height:280px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* IMAGE GRID */
+.image-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+margin-bottom:10px;
+}
+
+.image-grid img{
+width:100%;
+max-height:250px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.image-label{
+text-align:center;
+font-size:12px;
+color:#666;
+margin-top:5px;
+font-weight:bold;
+}
+
+/* CAPTION */
+.caption{
+padding:10px;
+white-space:pre-line;
+font-size:14px;
+line-height:1.6;
+}
+
+/* BUTTONS */
+button{
+padding:8px 15px;
+margin:5px;
+border:none;
+border-radius:5px;
+background:#333;
+color:white;
+cursor:pointer;
+}
+
+.copy-btn{ background:#007bff; }
+.download-btn{ background:#28a745; }
+
+/* LANGUAGE BUTTON COLORS */
+.lang-btn{ background:#555; }
+</style>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>📸 AI Instagram Caption Generator</h2>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<input type="file" name="image" required>
+<br><br>
+<button type="submit">Generate</button>
+</form>
+
+{% if result %}
+<p>{{ result.scene }}</p>
+
+<div id="postSection" class="post">
+
+<!-- IMAGE GRID -->
+{% if result.cartoon_url %} 
+<div class="image-grid">
+<div>
+<img src="{{ result.image.url }}" alt="Original">
+<div class="image-label">📷 Original</div>
+</div>
+<div>
+<img src="{{ result.cartoon_url }}" alt="Anime">
+<div class="image-label">🎨 Anime Style</div>
+</div>
+</div>
+{% else %}
+<img src="{{ result.image.url }}" alt="Original">
+{% endif %}
+
+<!-- CAPTION -->
+<div class="caption" id="captionText">
+
+✨ {{ result.caption_en }}
+
+<br><br>
+
+🌴 {{ result.caption_ml }}
+
+<br><br>
+
+🇮🇳 {{ result.caption_hi }}
+
+<br><br>
+
+🌺 {{ result.caption_ta }}
+
+<br><br>
+
+🌎 {{ result.caption_es }}
+
+<br><br>
+
+🏷 {{ result.hashtags }}
+
+</div>
+
+</div>
+
+<!-- COPY -->
+<button class="copy-btn" onclick="copyCaption()">📋 Copy</button>
+
+<!-- 🔥 MULTI LANGUAGE VOICE -->
+<br>
+
+<button class="lang-btn" onclick="speakText(`{{ result.caption_en|escapejs }}`, 'en-US')">🔊 English</button>
+
+<button class="lang-btn" onclick="speakText(`{{ result.caption_ml|escapejs }}`, 'ml-IN')">🌴 Malayalam</button>
+
+<button class="lang-btn" onclick="speakText(`{{ result.caption_hi|escapejs }}`, 'hi-IN')">🇮🇳 Hindi</button>
+
+<button class="lang-btn" onclick="speakText(`{{ result.caption_ta|escapejs }}`, 'ta-IN')">🌺 Tamil</button>
+
+<button class="lang-btn" onclick="speakText(`{{ result.caption_es|escapejs }}`, 'es-ES')">🌎 Spanish</button>
+
+<br>
+
+<!-- DOWNLOAD -->
+<button class="download-btn" onclick="downloadPost()">⬇ Download</button>
+<a href="{% url 'caption' %}">⬅ Back to Home</a>
+{% endif %}
+
+</div>
+
+<script>
+
+// COPY
+function copyCaption(){
+let el = document.getElementById("captionText");
+
+if(!el){
+alert("No caption!");
+return;
+}
+
+navigator.clipboard.writeText(el.innerText);
+alert("Copied!");
+}
+
+// 🔥 MULTI LANGUAGE VOICE
+function speakText(text, lang){
+
+if(!text || text.trim()===""){
+alert("No caption!");
+return;
+}
+
+speechSynthesis.cancel();
+
+let speech = new SpeechSynthesisUtterance(text);
+speech.lang = lang;
+
+// Better voice selection
+let voices = speechSynthesis.getVoices();
+let selectedVoice = voices.find(v => v.lang === lang);
+
+if(selectedVoice){
+speech.voice = selectedVoice;
+}
+
+speechSynthesis.speak(speech);
+}
+
+// 🔥 FIXED DOWNLOAD
+function downloadPost(){
+
+let element = document.getElementById("postSection");
+
+if(!element){
+alert("Nothing to download!");
+return;
+}
+
+let images = element.getElementsByTagName("img");
+let promises = [];
+
+for(let img of images){
+if(!img.complete){
+promises.push(new Promise(resolve=>{
+img.onload = resolve;
+img.onerror = resolve;
+}));
+}
+}
+
+Promise.all(promises).then(()=>{
+html2canvas(element, {
+scale: 2,
+useCORS: true,
+backgroundColor: "#ffffff"
+}).then(canvas=>{
+let link = document.createElement("a");
+link.download = "instagram_post.png";
+link.href = canvas.toDataURL("image/png");
+link.click();
+});
+});
+
+}
+
+</script>
+
+</body>
+</html>

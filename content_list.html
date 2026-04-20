@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Content Management</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI,Arial;
+    background:#f5f7fb;
+}
+
+/* HEADER */
+.header{
+    background:#1f2937;
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.header h2{
+    margin:0;
+    font-weight:600;
+}
+
+.header a{
+    color:white;
+    text-decoration:none;
+    background:#ef4444;
+    padding:6px 12px;
+    border-radius:6px;
+    font-size:14px;
+}
+
+/* CONTAINER */
+.container{
+    padding:30px;
+}
+
+/* TABLE */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+th,td{
+    padding:14px;
+    text-align:center;
+}
+
+th{
+    background:#f1f5f9;
+    font-size:14px;
+}
+
+tr{
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f9fafb;
+}
+
+/* IMAGE */
+.preview{
+    width:70px;
+    height:60px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+/* STATUS BADGE */
+.badge{
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:12px;
+    color:white;
+}
+
+.approved{ background:#16a34a; }
+.pending{ background:#f59e0b; }
+.rejected{ background:#dc2626; }
+
+/* BUTTONS */
+.btn{
+    padding:6px 10px;
+    border:none;
+    border-radius:6px;
+    color:white;
+    font-size:12px;
+    text-decoration:none;
+    margin:2px;
+}
+
+.view{ background:#2563eb; }
+.approve{ background:#16a34a; }
+.reject{ background:#f59e0b; }
+.delete{ background:#dc2626; }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h2>Content Oversight</h2>
+<a href="{% url 'admin_dashboard' %}">Back</a>
+</div>
+
+<div class="container">
+
+<table>
+<thead>
+<tr>
+<th>Image</th>
+<th>User</th>
+<th>Detected Objects</th>
+<th>Caption</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+
+{% for item in content %}
+<tr>
+
+<td>
+{% if item.image %}
+<img src="{{ item.image.url }}" class="preview">
+{% else %}
+No Image
+{% endif %}
+</td>
+
+<td>{{ item.user.name }}</td>
+
+<td>{{ item.detected_objects }}</td>
+
+<td>{{ item.caption }}</td>
+
+<td>
+{% if item.status == "approved" %}
+<span class="badge approved">Approved</span>
+{% elif item.status == "rejected" %}
+<span class="badge rejected">Rejected</span>
+{% else %}
+<span class="badge pending">Pending</span>
+{% endif %}
+</td>
+
+<td>
+
+<a href="{% url 'view_content' item.id %}" class="btn view">View</a>
+
+<a href="{% url 'approve_content' item.id %}" class="btn approve">
+Approve
+</a>
+
+<a href="{% url 'reject_content' item.id %}" class="btn reject">
+Reject
+</a>
+
+<a href="{% url 'delete_content' item.id %}"
+   class="btn delete"
+   onclick="return confirm('Delete this content?')">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% empty %}
+<tr>
+<td colspan="6">No content available</td>
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+
+</div>
+
+</body>
+</html>

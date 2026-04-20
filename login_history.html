@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login History</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+/* Header */
+.header{
+    background:#2c3e50;
+    color:white;
+    padding:18px 30px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* Container */
+.container{
+    padding:30px;
+}
+
+/* Search */
+.search-box{
+    margin-bottom:20px;
+}
+
+.search-box input{
+    padding:10px;
+    width:280px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* Table */
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 2px 12px rgba(0,0,0,0.1);
+}
+
+th,td{
+    padding:14px;
+    text-align:center;
+}
+
+th{
+    background:#34495e;
+    color:white;
+}
+
+tr{
+    border-bottom:1px solid #eee;
+}
+
+tr:hover{
+    background:#f9f9f9;
+}
+
+/* Buttons */
+.btn{
+    display:inline-block;
+    padding:10px 15px;
+    background:#1abc9c;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    margin-bottom:20px;
+}
+
+.btn:hover{
+    background:#16a085;
+}
+
+/* No Data */
+.no-data{
+    padding:20px;
+    color:#888;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+Admin Panel — Login History
+</div>
+
+<div class="container">
+
+<a href="{% url 'adminhome' %}" class="btn">← Back to Dashboard</a>
+
+<!-- Search Bar -->
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search user..." onkeyup="filterTable()">
+</div>
+
+<!-- Table -->
+<table id="historyTable">
+
+<tr>
+<th>User</th>
+<th>Email</th>
+<th>Login Time</th>
+<th>IP Address</th>
+</tr>
+
+{% for log in logs %}
+<tr>
+<td>{{ log.user.name }}</td>
+<td>{{ log.user.email }}</td>
+<td>{{ log.login_time }}</td>
+<td>{{ log.ip_address }}</td>
+</tr>
+{% empty %}
+<tr>
+<td colspan="4" class="no-data">No login history found</td>
+</tr>
+{% endfor %}
+
+</table>
+
+</div>
+
+<script>
+function filterTable(){
+    let input=document.getElementById("searchInput");
+    let filter=input.value.toLowerCase();
+    let rows=document.querySelectorAll("#historyTable tr");
+
+    rows.forEach((row,i)=>{
+        if(i===0)return;
+        let name=row.children[0].innerText.toLowerCase();
+        row.style.display=name.includes(filter)?"":"none";
+    });
+}
+</script>
+
+</body>
+</html>

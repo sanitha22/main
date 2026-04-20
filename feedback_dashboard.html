@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+        }
+
+        .navbar {
+            background-color: #2e7d32;
+            padding: 15px 25px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        th, td {
+            padding: 14px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover {
+            background-color: #fafafa;
+        }
+
+        .action-btn {
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            color: #fff;
+            margin: 2px;
+            display: inline-block;
+        }
+
+        .view { background-color: #1976D2; }
+        .delete { background-color: #D32F2F; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <div class="title">Feedback Dashboard</div>
+    <a href="{% url 'adminhome' %}">Back to Home</a>
+</div>
+
+<div class="container">
+    <h2>User Feedback</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Admin Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in messages %}
+            <tr>
+                <td>{{ msg.name }}</td>
+                <td>{{ msg.email }}</td>
+                <td>{{ msg.subject }}</td>
+                <td>{{ msg.message }}</td>
+                <td>
+                    <a href="{% url 'delete_message' msg.id %}" class="action-btn delete"
+                       onclick="return confirm('Delete this message?')">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No messages found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

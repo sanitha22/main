@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Registration</title>
+
+<style>
+/* YOUR ENTIRE CSS SAME — NO CHANGE */
+body{
+    font-family: Arial;
+    margin:0;
+    height:100vh;
+    background:url('https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.register-container{
+    background:rgba(255,255,255,.95);
+    padding:35px 40px;
+    width:380px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    color:#2e7d32;
+}
+
+label{
+    font-size:14px;
+    color:#555;
+}
+
+input,select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#2e7d32;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.toggle{
+    float:right;
+    cursor:pointer;
+    font-size:12px;
+    color:#2e7d32;
+}
+
+.strength{
+    height:6px;
+    border-radius:4px;
+    margin-top:-10px;
+    margin-bottom:15px;
+    background:#ddd;
+}
+
+.bar{
+    height:100%;
+    width:0%;
+    border-radius:4px;
+    transition:.3s;
+}
+
+.preview{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.preview img{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    object-fit:cover;
+    display:none;
+}
+
+.extra-links{
+    text-align:center;
+    margin-top:15px;
+}
+
+.extra-links a{
+    display:block;
+    margin-top:8px;
+    text-decoration:none;
+    color:#2e7d32;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="register-container">
+
+<h2>Create Account</h2>
+
+<!-- Django messages -->
+{% if messages %}
+{% for message in messages %}
+<p style="color:red;text-align:center">{{ message }}</p>
+{% endfor %}
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+{% csrf_token %}
+
+<label>Name</label>
+<input type="text" id="name" name="name" required minlength="3">
+
+<label>Email</label>
+<input type="email" id="email" name="email" required>
+
+<label>Password <span class="toggle" onclick="togglePass()">Show</span></label>
+<input type="password" id="password" name="password" onkeyup="strengthCheck()" required minlength="6">
+
+<div class="strength"><div class="bar" id="bar"></div></div>
+
+<label>Gender</label>
+<select name="gender" id="gender" required>
+<option value="">Select</option>
+<option>Female</option>
+<option>Male</option>
+<option>Other</option>
+</select>
+
+<label>Profile Image</label>
+
+<div class="preview">
+<img id="previewImg">
+</div>
+
+<input type="file" id="image" name="image" onchange="preview(event)" required>
+
+<button type="submit">Register</button>
+
+<div class="extra-links">
+<a href="{% url 'index' %}">← Back to Home</a>
+<a href="{% url 'login' %}">Already have account? Login</a>
+</div>
+
+</form>
+</div>
+
+<script>
+
+function validateForm(){
+
+let name=document.getElementById("name").value;
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+let gender=document.getElementById("gender").value;
+let image=document.getElementById("image").value;
+
+let emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(name.length<3){
+alert("Name must be at least 3 characters");
+return false;
+}
+
+if(!emailPattern.test(email)){
+alert("Enter valid email");
+return false;
+}
+
+if(password.length<6){
+alert("Password must be at least 6 characters");
+return false;
+}
+
+if(gender==""){
+alert("Please select gender");
+return false;
+}
+
+if(image==""){
+alert("Please upload profile image");
+return false;
+}
+
+return true;
+}
+
+function togglePass(){
+let pass=document.getElementById("password");
+pass.type = pass.type==="password" ? "text":"password";
+}
+
+function strengthCheck(){
+let val=document.getElementById("password").value;
+let bar=document.getElementById("bar");
+let strength=0;
+
+if(val.length>5) strength++;
+if(val.match(/[A-Z]/)) strength++;
+if(val.match(/[0-9]/)) strength++;
+if(val.match(/[^A-Za-z0-9]/)) strength++;
+
+bar.style.width=(strength*25)+"%";
+
+if(strength==1) bar.style.background="red";
+if(strength==2) bar.style.background="orange";
+if(strength==3) bar.style.background="gold";
+if(strength==4) bar.style.background="green";
+}
+
+function preview(e){
+let img=document.getElementById("previewImg");
+img.src=URL.createObjectURL(e.target.files[0]);
+img.style.display="block";
+}
+
+</script>
+
+</body>
+</html>

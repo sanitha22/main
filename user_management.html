@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User Management</title>
+
+<style>
+body{
+    font-family: Arial;
+    margin:0;
+    background:#f4f6f8;
+}
+.navbar{
+    background:#2e7d32;
+    color:white;
+    padding:15px 25px;
+    font-size:20px;
+    font-weight:bold;
+}
+.container{ padding:30px; }
+
+.header-bar{
+    display:flex;
+    justify-content:flex-start;
+    margin-bottom:20px;
+}
+
+.search-box{
+    padding:8px;
+    border-radius:6px;
+    border:1px solid #ccc;
+    width:250px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+th,td{
+    padding:14px;
+    text-align:center;
+}
+
+th{ background:#f1f1f1; }
+
+tr{ border-bottom:1px solid #eee; }
+
+tr:hover{ background:#fafafa; }
+
+img.profile{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+
+.btn{
+    padding:6px 12px;
+    border:none;
+    border-radius:5px;
+    color:white;
+    cursor:pointer;
+    font-size:12px;
+}
+
+.edit{ background:#3498db; }
+.delete{ background:#e74c3c; }
+.block{ background:#f39c12; }
+.btn:hover{ opacity:.85; }
+</style>
+</head>
+
+<body>
+
+<div class="navbar">User Management</div>
+
+<div class="container">
+
+<div class="header-bar">
+<input type="text" placeholder="Search user..." class="search-box" id="searchInput">
+</div>
+
+<table id="userTable">
+<thead>
+<tr>
+<th>Profile</th>
+<th>Name</th>
+<th>Email</th>
+<th>Role</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody id="userBody">
+
+<tr>
+<td><img src="https://i.pravatar.cc/100?img=1" class="profile"></td>
+<td>Anjali</td>
+<td>anjali@gmail.com</td>
+<td>User</td>
+<td class="status">Active</td>
+<td>
+<button class="btn edit" onclick="editUser(this)">Edit</button>
+<button class="btn block" onclick="toggleBlock(this)">Block</button>
+<button class="btn delete" onclick="deleteUser(this)">Delete</button>
+</td>
+</tr>
+
+<tr>
+<td><img src="https://i.pravatar.cc/100?img=2" class="profile"></td>
+<td>Rahul</td>
+<td>rahul@gmail.com</td>
+<td>Creator</td>
+<td class="status">Active</td>
+<td>
+<button class="btn edit" onclick="editUser(this)">Edit</button>
+<button class="btn block" onclick="toggleBlock(this)">Block</button>
+<button class="btn delete" onclick="deleteUser(this)">Delete</button>
+</td>
+</tr>
+
+</tbody>
+</table>
+
+</div>
+
+<script>
+
+// SEARCH FUNCTION
+document.getElementById("searchInput").addEventListener("keyup", function(){
+    let value = this.value.toLowerCase();
+    let rows = document.querySelectorAll("#userBody tr");
+
+    rows.forEach(row=>{
+        row.style.display =
+            row.innerText.toLowerCase().includes(value)
+            ? "" : "none";
+    });
+});
+
+// DELETE USER
+function deleteUser(btn){
+    if(confirm("Delete this user?")){
+        btn.closest("tr").remove();
+    }
+}
+
+// BLOCK / UNBLOCK
+function toggleBlock(btn){
+    let statusCell = btn.closest("tr").querySelector(".status");
+
+    if(statusCell.innerText === "Active"){
+        statusCell.innerText = "Blocked";
+        btn.innerText = "Unblock";
+    } else {
+        statusCell.innerText = "Active";
+        btn.innerText = "Block";
+    }
+}
+
+// EDIT USER NAME
+function editUser(btn){
+    let nameCell = btn.closest("tr").children[1];
+    let newName = prompt("Edit name:", nameCell.innerText);
+
+    if(newName){
+        nameCell.innerText = newName;
+    }
+}
+
+</script>
+
+</body>
+</html>

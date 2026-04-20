@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1588702547923-7093a6c3ba33?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Overlay for darkening background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.45);
+            z-index: 0;
+        }
+
+        /* Navbar */
+        nav {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(15,23,42,0.85); /* Dark semi-transparent */
+            color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 0 0 15px 15px;
+        }
+        nav h1 { font-size: 24px; font-weight: 700; }
+        nav a {
+            color: white; text-decoration: none; font-weight: 500; margin-left: 20px;
+            padding: 8px 15px; border-radius: 5px; transition: 0.3s;
+            background-color: rgba(30,64,175,0.85);
+        }
+        nav a:hover { background-color: rgba(59,130,246,0.85); }
+
+        /* Hero Section */
+        /* Hero Section */
+.hero {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 50px 20px;
+    /* Removed background gradient */
+    color: white;
+    margin-bottom: 30px;
+    margin: 20px auto 0;
+    width: 90%;
+    /* Optional: add subtle shadow to text for readability */
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+    border-radius: 0; /* removed rounded corners if you want it flush */
+}
+
+        .hero h2 { font-size: 34px; margin-bottom: 10px; }
+        .hero p { font-size: 18px; opacity: 0.95; }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            margin: -40px auto 50px;
+            width: 90%;
+        }
+        .dashboard-card {
+            background-color: rgba(255,255,255,0.95); /* Semi-transparent */
+            backdrop-filter: blur(8px);
+            width: 650px;
+            border-radius: 18px;
+            padding: 40px 45px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h3 { text-align: center; color: #1e3a8a; margin-bottom: 25px; font-size: 22px; }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            color: #374151; 
+            font-weight: 500;
+        }
+        input[type="file"], select {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 10px;
+            border: 1px solid #d1d5db;
+            margin-bottom: 20px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        input[type="file"]:hover, select:hover { border-color: #3b82f6; }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover { background: linear-gradient(90deg, #1e40af, #2563eb); }
+
+        .message { 
+            text-align: center; 
+            margin-bottom: 20px; 
+            color: #059669; 
+            font-weight: 600; 
+            font-size: 15px;
+        }
+
+        .image-preview {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .image-preview img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .caption-box {
+            background-color: #f0f9ff;
+            margin-top: 15px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #1e3a8a;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Footer */
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(15,23,42,0.85);
+            color: white;
+            font-size: 14px;
+        }
+
+        @media (max-width: 750px) {
+            .dashboard-card { width: 95%; padding: 30px; }
+            nav { flex-direction: column; padding: 15px; }
+            nav a { margin: 10px 0 0 0; }
+            .hero { width: 95%; margin: 20px auto; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <h1>Image Caption Website</h1>
+    <div>
+         <a href="/profile/">Profile</a>
+         <a href="/logout/" style="background-color: rgba(220,38,38,0.85);">Logout</a>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero">
+    <h2>Welcome, {{ name }}</h2>
+    <p>Upload your image and get captions in multiple languages</p>
+</div>
+
+<!-- Dashboard Form -->
+<div class="container">
+    <div class="dashboard-card">
+        <!-- {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %} -->
+        <h3>Generate Image Caption</h3>
+        <!-- <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Upload Image</label>
+            <input type="file" name="image" required>
+
+            
+
+            <button type="submit">Generate Caption</button>
+        </form> -->
+<button onclick="window.location.href='{% url 'caption' %}'">
+Generate Caption
+</button>
+        <!-- Image Preview & Caption -->
+        <!-- {% if uploaded_image %}
+        <div class="image-preview">
+            <img src="{{ uploaded_image.url }}" alt="Uploaded Image">
+            {% if generated_caption %}
+                <div class="caption-box">{{ generated_caption }}</div>
+            {% endif %}
+        </div>
+        {% endif %} -->
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2026 Image Caption Website | All Rights Reserved
+</footer>
+
+</body>
+</html>

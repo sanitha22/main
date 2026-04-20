@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Caption Results</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f2f2f2;
+padding:40px;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:10px;
+width:900px;
+margin:auto;
+}
+
+.card{
+border:1px solid #ddd;
+padding:20px;
+margin-bottom:20px;
+border-radius:10px;
+}
+
+img{
+max-width:200px;
+margin-top:10px;
+}
+
+h2{
+text-align:center;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h2>AI Caption History</h2>
+
+<a href="{% url 'adminhome' %}">⬅ Back to Home</a>
+
+<br><br>
+
+{% for item in results %}
+
+<div class="card">
+
+<h3>Scene</h3>
+<p>{{ item.scene }}</p>
+
+<img src="{{ item.image.url }}">
+
+<h4>English</h4>
+<p>{{ item.caption_en }}</p>
+
+<h4>Malayalam</h4>
+<p>{{ item.caption_ml }}</p>
+
+<h4>Hindi</h4>
+<p>{{ item.caption_hi }}</p>
+
+<h4>Tamil</h4>
+<p>{{ item.caption_ta }}</p>
+
+<h4>Spanish</h4>
+<p>{{ item.caption_es }}</p>
+
+<h4>Hashtags</h4>
+<p>{{ item.hashtags }}</p>
+
+<p><b>Created:</b> {{ item.created_at }}</p>
+<a href="{% url 'delete_caption' item.id %}" 
+onclick="return confirm('Delete this caption?')">
+<button style="background:red;color:white;border:none;padding:8px 15px;border-radius:5px;">
+Delete
+</button>
+</a>
+</div>
+
+{% empty %}
+
+<p>No captions generated yet.</p>
+
+{% endfor %}
+
+</div>
+
+</body>
+
+</html>

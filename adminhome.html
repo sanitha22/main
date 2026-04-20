@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+}
+
+/* Header */
+.header{
+    background:#2c3e50;
+    color:white;
+    padding:15px 30px;
+    font-size:22px;
+    font-weight:bold;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* Logout button */
+.logout-btn{
+    background:#e74c3c;
+    padding:8px 16px;
+    border-radius:6px;
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+}
+
+.logout-btn:hover{
+    background:#c0392b;
+}
+
+/* Layout */
+.container{
+    display:flex;
+}
+
+/* Sidebar */
+.sidebar{
+    width:230px;
+    background:#34495e;
+    min-height:100vh;
+    color:white;
+}
+
+.sidebar a{
+    display:block;
+    padding:15px 20px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar a:hover{
+    background:#1abc9c;
+}
+
+/* Main */
+.main{
+    flex:1;
+    padding:25px;
+}
+
+/* Cards */
+.grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    margin-top:0;
+    color:#2c3e50;
+}
+
+.card p{
+    color:#777;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:10px;
+    padding:10px 15px;
+    background:#1abc9c;
+    color:white;
+    border-radius:6px;
+    text-decoration:none;
+    font-size:14px;
+}
+
+.btn:hover{
+    background:#16a085;
+}
+
+/* Notification box */
+.notifications{
+    margin-top:30px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.notification-item{
+    padding:10px;
+    border-bottom:1px solid #eee;
+}
+
+.notification-item:last-child{
+    border-bottom:none;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    AI Image System — Admin Dashboard
+    <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+</div>
+
+<div class="container">
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <a href="#">Dashboard</a>
+    <a href="{% url 'login_history' %}">User Management</a>
+    <a href="/feedback-dashboard/">Feedbacks</a>
+    <a href="{% url 'results' %}">Captions</a>
+    <!-- <a href="#">Analytics</a>
+    <a href="#">Notifications</a>
+    <a href="#">Settings</a> -->
+</div>
+
+<!-- Main Content -->
+<div class="main">
+
+<div class="grid">
+
+
+
+<!-- Login History -->
+<div class="card">
+<h3>Login History</h3>
+<p>View login history of this user</p>
+<a href="{% url 'login_history' %}" class="btn">Login History</a>
+</div>
+
+
+</div>
+
+<!-- Notification Panel -->
+<!-- <div class="notifications">
+<h3>Recent Notifications</h3>
+
+<div class="notification-item">New user registered</div>
+<div class="notification-item">Image flagged for review</div>
+<div class="notification-item">Monthly report generated</div>
+<div class="notification-item">System update completed</div>
+
+</div> -->
+
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - DevFolio Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: DevFolio
+  * Template URL: https://bootstrapmade.com/devfolio-bootstrap-portfolio-html-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="#hero" class="active">Home<br></a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="/registration/">Register</a></li>
+          <li><a href="/login/">login</a></li>
+       
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+
+      <img src="{% static 'assets/img/hero_img.jpg' %}" alt="">
+
+<div class="container d-flex flex-column align-items-center justify-content-center text-center">
+
+        <h2>SceneScribe</h2>
+        
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+     <section id="about" class="about section"></section>
+
+    <div style="max-width: 900px; margin: 40px auto; background: white; padding: 30px 40px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); font-family: Arial, sans-serif; color: #333; border-radius: 8px; display: flex; gap: 40px;">
+
+  <!-- Left Column: Project Info -->
+  <div style="flex: 1;">
+    <p><strong>Project Name:</strong> SceneScribe</p>
+    <p><strong>Technology:</strong> Deep Learning, Computer Vision, NLP</p>
+    <p><strong>Purpose:</strong> Automated object detection and multi-language image caption generation</p>
+    <p><strong>Status:</strong> In development / Prototype</p>
+
+    <h4 style="margin-top: 40px; margin-bottom: 10px; color: #1e40af;">Key Features</h4>
+    <ul style="list-style-type:none; padding-left: 0; font-weight: 600; color: #1e3a8a;">
+      <li>✔️ Detects multiple objects in images</li>
+      <li>✔️ Generates natural language captions</li>
+      <li>✔️ Supports multiple languages (English, Hindi, Malayalam, French, Spanish)</li>
+      <li>✔️ Responsive user dashboard with image upload</li>
+      <li>✔️ Smooth fade-in effects for image preview</li>
+    </ul>
+  </div>
+
+  <!-- Right Column: About Description -->
+  <div style="flex: 2;">
+    <h2 style="color: #111; border-bottom: 3px solid #2563eb; display: inline-block; padding-bottom: 4px; margin-bottom: 20px;">About the Project</h2>
+
+    <p>
+      SceneScribe is an AI-powered system designed to analyze images, detect objects, and generate human-like captions describing the content. Combining state-of-the-art computer vision and natural language processing models, the project aims to bridge the gap between visual data and descriptive language.
+    </p>
+    <p>
+      This tool provides users with detailed, multi-language captions, making images accessible and understandable to a wider audience, including those with visual impairments or language barriers.
+    </p>
+    <p>
+      The system supports a clean and user-friendly dashboard where users can upload images, select their preferred caption language, and instantly receive descriptive captions enhanced by smooth visual effects for a modern user experience.
+    </p>
+  </div>
+
+</div>
+
+
+    
+    
+    
+
+       
+
+
+    <section id="portfolio" style="max-width: 900px; margin: 50px auto; font-family: Arial, sans-serif; color: #333;">
+
+  <h2 style="border-bottom: 3px solid #2563eb; padding-bottom: 6px; margin-bottom: 30px; color: #111;">My Project Portfolio</h2>
+
+  <!-- Project Card -->
+  <div style="background: white; padding: 30px 40px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); margin-bottom: 30px;">
+
+    <h3 style="color: #1e40af; margin-bottom: 10px;">SceneScribe — AI Image Captioning Tool</h3>
+    
+    <p>
+      An advanced AI system that detects and recognizes all objects in an image and generates detailed, natural language captions in multiple languages including English, Hindi, Malayalam, French, and Spanish.
+    </p>
+    
+    <ul style="list-style: none; padding-left: 0; margin-top: 15px; font-weight: 600; color: #2563eb;">
+      <li>✔️ Object Detection with Deep Learning</li>
+      <li>✔️ Multi-language Caption Generation</li>
+      <li>✔️ Responsive Web Dashboard with Image Upload</li>
+      <li>✔️ Smooth UI Animations and Image Preview</li>
+    </ul>
+
+    <a href="https://github.com/yourusername/scenescribe" target="_blank" style="display: inline-block; margin-top: 20px; padding: 12px 25px; background: #2563eb; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.3s;">
+      View on GitHub
+    </a>
+
+  </div>
+
+  <!-- Skills Section -->
+  <div style="background: white; padding: 30px 40px; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+    <h3 style="color: #1e40af; margin-bottom: 15px;">Technical Skills</h3>
+
+    <div style="margin-bottom: 15px;">
+      <label>Python</label>
+      <div style="background: #e5e7eb; border-radius: 8px; overflow: hidden; height: 15px;">
+        <div style="width: 90%; background: #3b82f6; height: 100%;"></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Deep Learning (PyTorch/TensorFlow)</label>
+      <div style="background: #e5e7eb; border-radius: 8px; overflow: hidden; height: 15px;">
+        <div style="width: 85%; background: #3b82f6; height: 100%;"></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Computer Vision</label>
+      <div style="background: #e5e7eb; border-radius: 8px; overflow: hidden; height: 15px;">
+        <div style="width: 80%; background: #3b82f6; height: 100%;"></div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label>Frontend (HTML, CSS, JS)</label>
+      <div style="background: #e5e7eb; border-radius: 8px; overflow: hidden; height: 15px;">
+        <div style="width: 75%; background: #3b82f6; height: 100%;"></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+    
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+  <div class="container">
+
+    <div class="row gy-4">
+
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="content px-xl-5">
+          <h3><span>Frequently Asked </span><strong>Questions</strong></h3>
+          <p>
+            Here are some common questions about our AI-powered image captioning project to help you understand its features and usage.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="faq-container">
+          <div class="faq-item faq-active">
+            <h3><span class="num">1.</span> <span>What does this project do?</span></h3>
+            <div class="faq-content">
+              <p>This project detects multiple objects in any uploaded image and generates descriptive captions in multiple languages, including English, Hindi, Malayalam, French, and Spanish.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3><span class="num">2.</span> <span>Which technologies are used?</span></h3>
+            <div class="faq-content">
+              <p>We use deep learning models for object detection (like YOLO or Faster R-CNN) and natural language processing models for caption generation, along with a responsive web interface for user interaction.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3><span class="num">3.</span> <span>Can I upload any image format?</span></h3>
+            <div class="faq-content">
+              <p>Yes, common image formats such as JPG, PNG, and GIF are supported for upload and processing.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3><span class="num">4.</span> <span>How accurate are the generated captions?</span></h3>
+            <div class="faq-content">
+              <p>Captions are generated using advanced AI models and are generally accurate, but performance may vary depending on image quality and complexity.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+          <div class="faq-item">
+            <h3><span class="num">5.</span> <span>Are my uploaded images stored or shared?</span></h3>
+            <div class="faq-content">
+              <p>Uploaded images are only processed temporarily and are not stored or shared without your consent to ensure privacy and security.</p>
+            </div>
+            <i class="faq-toggle bi bi-chevron-right"></i>
+          </div><!-- End Faq item-->
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section><!-- /Faq Section -->
+           
+           
+            
+
+    <section id="contact" class="contact section">
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Feedback</h2>
+      <p>Get in touch to learn more about SceneScribe – an intelligent system for object detection, recognition, and image caption generation</p>
+    </div>
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <form id="contactForm" method="post" class="php-email-form">
+        {% csrf_token %}
+        <div class="row gy-4">
+          <div class="col-md-6">
+            <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+          </div>
+
+          <div class="col-md-6">
+            <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+          </div>
+
+          <div class="col-md-12">
+            <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+          </div>
+
+          <div class="col-md-12">
+            <textarea name="message" class="form-control" rows="6" placeholder="Message" required></textarea>
+          </div>
+
+          <div class="col-md-12 text-center">
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </section>
+  
+
+
+  </main>
+
+  <footer id="footer" class="footer accent-background">
+
+    <div class="container">
+      <div class="copyright text-center ">
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">SceneScribe</strong> <span>All Rights Reserved</span></p>
+      </div>
+      <div class="social-links d-flex justify-content-center">
+        <a href=""><i class="bi bi-twitter-x"></i></a>
+        <a href=""><i class="bi bi-facebook"></i></a>
+        <a href=""><i class="bi bi-instagram"></i></a>
+        <a href=""><i class="bi bi-linkedin"></i></a>
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/typed.js/typed.umd.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js'%}"></script>
+  <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
+  <script>
+    function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+const csrftoken = getCookie('csrftoken');
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!(/^GET|HEAD|OPTIONS|TRACE$/.test(settings.type)) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+    $(document).ready(function() {
+      $('#contactForm').on('submit', function(e) {
+        e.preventDefault(); // prevent page reload
+
+        var $form = $(this);
+        var $button = $form.find('button[type="submit"]');
+        $button.prop('disabled', true); // disable button while sending
+
+        $.ajax({
+          type: 'POST',
+          url: "/feedback/", // Django view URL
+          data: $form.serialize(),
+          success: function(response) {
+            // SweetAlert success popup
+            Swal.fire({
+              icon: 'success',
+              title: 'Message Sent!',
+              text: '✅ Your message has been sent successfully!',
+              confirmButtonColor: '#2563eb',
+            });
+            $form.trigger('reset'); // clear the form fields
+            $button.prop('disabled', false); // re-enable button
+          },
+          error: function(xhr) {
+            // SweetAlert error popup
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops!',
+              text: '❌ Something went wrong. Please try again.',
+              confirmButtonColor: '#dc2626',
+            });
+            $button.prop('disabled', false); // re-enable button
+          }
+        });
+      });
+    });
+  </script>
+
+  
+  
+
+
+</body>
+
+</html>

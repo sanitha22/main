@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            background: url('https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Overlay for darkening background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.45);
+            z-index: 0;
+        }
+
+        .profile-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 35px;
+            width: 380px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 25px;
+            color: #1e3a8a;
+            font-size: 26px;
+        }
+
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #4CAF50;
+        }
+
+        .info {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .info p {
+            margin: 10px 0;
+            color: #374151;
+            font-size: 15px;
+        }
+
+        .label {
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .btn {
+            display: inline-block;
+            margin: 15px 10px 0 10px;
+            padding: 12px 20px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: linear-gradient(90deg, #1e40af, #2563eb);
+        }
+
+        @media (max-width: 450px) {
+            .profile-container { width: 90%; padding: 25px; }
+            h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile-container">
+    <h2>User Profile</h2>
+
+    {% if user.image %}
+        <img src="{{ user.image.url }}" alt="Profile Image" class="profile-img">
+    {% else %}
+        <img src="https://via.placeholder.com/130" class="profile-img">
+    {% endif %}
+
+    <div class="info">
+        <p><span class="label">Name:</span> {{ user.name }}</p>
+        <p><span class="label">Email:</span> {{ user.email }}</p>
+        <p><span class="label">Gender:</span> {{ user.gender }}</p>
+        <!-- <p><span class="label">Caption Language:</span> {{ user.caption_language }}</p> -->
+    </div>
+
+    <a href="{% url 'editprofile' %}" class="btn">Edit Profile</a>
+    <a href="{% url 'userhome' %}" class="btn">Home</a>
+</div>
+
+</body>
+</html>
